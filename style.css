@@ -1,37 +1,88 @@
+:root {
+  --bg-color: #f0f2f5;
+  --container-bg: #ffffff;
+  --text-color: #1a1a1a;
+  --sub-text-color: #666666;
+  --row-bg: #f8f9fa;
+  --btn-gradient: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  --toggle-btn-bg: #ffffff;
+  --toggle-btn-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --container-bg: #1e1e1e;
+  --text-color: #e0e0e0;
+  --sub-text-color: #b0b0b0;
+  --row-bg: #2a2a2a;
+  --btn-gradient: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+  --toggle-btn-bg: #2a2a2a;
+  --toggle-btn-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
 body {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-  background-color: #f0f2f5;
+  background-color: var(--bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   margin: 0;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#theme-btn {
+  background: var(--toggle-btn-bg);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--toggle-btn-shadow);
+  font-size: 1.2rem;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+#theme-btn:hover {
+  transform: scale(1.1);
 }
 
 .container {
-  background: white;
+  background: var(--container-bg);
   padding: 2.5rem 1.5rem;
   border-radius: 24px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.08);
   text-align: center;
   max-width: 500px;
   width: 90%;
+  transition: background-color 0.3s ease;
 }
 
 h1 { 
-  color: #1a1a1a; 
+  color: var(--text-color); 
   margin-bottom: 0.5rem; 
   font-size: 1.8rem;
+  transition: color 0.3s ease;
 }
 
 p { 
-  color: #666; 
+  color: var(--sub-text-color); 
   margin-bottom: 2rem;
   font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
 #generate-btn {
-  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  background: var(--btn-gradient);
   color: white;
   border: none;
   padding: 16px 32px;
@@ -39,7 +90,7 @@ p {
   font-weight: 700;
   border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
   margin-bottom: 2.5rem;
   width: 100%;
 }
@@ -49,18 +100,15 @@ p {
   box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
 }
 
-#generate-btn:active {
-  transform: translateY(0);
-}
-
 .lotto-row {
   display: flex;
   justify-content: center;
   gap: 8px;
   margin-bottom: 12px;
   padding: 12px;
-  background: #f8f9fa;
+  background: var(--row-bg);
   border-radius: 12px;
+  transition: background-color 0.3s ease;
 }
 
 .ball {
@@ -77,11 +125,11 @@ p {
   box-shadow: inset -2px -2px 4px rgba(0,0,0,0.1), 2px 2px 4px rgba(0,0,0,0.05);
 }
 
-.range-1 { background-color: #fbc400; }  /* 1-10: Yellow */
-.range-11 { background-color: #69c8f2; } /* 11-20: Blue */
-.range-21 { background-color: #ff7272; } /* 21-30: Red */
-.range-31 { background-color: #aaaaaa; } /* 31-40: Gray */
-.range-41 { background-color: #b0d840; } /* 41-45: Green */
+.range-1 { background-color: #fbc400; }
+.range-11 { background-color: #69c8f2; }
+.range-21 { background-color: #ff7272; }
+.range-31 { background-color: #aaaaaa; }
+.range-41 { background-color: #b0d840; }
 
 @media (max-width: 400px) {
   .ball {

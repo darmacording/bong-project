@@ -1,5 +1,26 @@
-document.getElementById('generate-btn').addEventListener('click', displayNumbers);
+// Elements
+const generateBtn = document.getElementById('generate-btn');
+const themeBtn = document.getElementById('theme-btn');
+const lottoContainer = document.getElementById('lotto-container');
 
+// Theme Logic
+const currentTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', currentTheme);
+updateThemeIcon(currentTheme);
+
+themeBtn.addEventListener('click', () => {
+  const targetTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', targetTheme);
+  localStorage.setItem('theme', targetTheme);
+  updateThemeIcon(targetTheme);
+});
+
+function updateThemeIcon(theme) {
+  const icon = themeBtn.querySelector('.mode-icon');
+  icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+}
+
+// Lotto Logic
 function getRandomNumbers() {
   const numbers = [];
   while (numbers.length < 6) {
@@ -20,8 +41,7 @@ function getColorClass(num) {
 }
 
 function displayNumbers() {
-  const container = document.getElementById('lotto-container');
-  container.innerHTML = ''; // Clear previous results
+  lottoContainer.innerHTML = ''; 
 
   for (let i = 0; i < 5; i++) {
     const row = document.createElement('div');
@@ -35,9 +55,12 @@ function displayNumbers() {
       row.appendChild(ball);
     });
     
-    container.appendChild(row);
+    lottoContainer.appendChild(row);
   }
 }
+
+// Listeners
+generateBtn.addEventListener('click', displayNumbers);
 
 // Initial generation on load
 window.onload = displayNumbers;
