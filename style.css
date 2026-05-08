@@ -207,6 +207,11 @@ p {
   background: #555;
 }
 
+#disqus_thread {
+  margin-top: 1rem;
+  width: 100%;
+}
+
 @media (max-width: 400px) {
   .ball {
     width: 32px;
